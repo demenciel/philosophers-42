@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/01 15:38:09 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/01 16:25:34 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ typedef struct s_philo
 	pthread_t		thread_id;
 	struct s_data	*data;
 	int				philo_id;
-	int				left_fork_id;
-	int				right_fork_id;
+	int				fork_id;
 	int				status;
 	int				nb_time_eat;
 	int				time_last_meal;
@@ -53,7 +52,7 @@ typedef struct s_data
 // UTILS ---------------------------------------------------------------------
 t_data				*call_struct(void);
 long long			time_stamp(void);
-void				init_data(char **av);
+int					init_data(char **av);
 int					ft_atoi(char *s);
 int					check_av(char **av, int ac);
 int					time_to_action(long long end_time);
