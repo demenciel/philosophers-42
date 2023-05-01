@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/01 16:25:34 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:06:10 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,23 @@ typedef struct s_data
 	int				nb_of_philo;
 	int				start_time;
 	pthread_mutex_t	fork[200];
+	pthread_mutex_t	eating;
 	t_philo			philo[200];
 
 }					t_data;
 
 // UTILS ---------------------------------------------------------------------
-t_data				*call_struct(void);
-long long			time_stamp(void);
-int					init_data(char **av);
 int					ft_atoi(char *s);
-int					check_av(char **av, int ac);
+long long			time_stamp(void);
 int					time_to_action(long long end_time);
+int					check_av(char **av, int ac);
+void				print_action(int time, int id, char *action);
+
+// MAIN
+t_data				*call_struct(void);
+int					init_data(char **av);
+
+// Threads Checks
+int					philo_eating(t_philo *philo);
 
 #endif

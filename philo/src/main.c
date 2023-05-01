@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:44:15 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/01 16:50:48 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:01:09 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ void	*philo_actions(void *void_philo)
 	else
 		fork1 = call_struct()->fork[philo->philo_id - 1];
 	pthread_mutex_lock(&fork1);
-	printf("%d Philo %d %s\n", time_to_action(time_stamp()), philo->philo_id,
-			FORK_TAKEN);
+	print_action(time_stamp(), philo->philo_id, FORK_TAKEN);
 	pthread_mutex_lock(&(call_struct()->fork[philo->philo_id + 1]));
-	printf("%d Philo %d %s\n", time_to_action(time_stamp()), philo->philo_id,
-			FORK_TAKEN);
+	print_action(time_stamp(), philo->philo_id, FORK_TAKEN);
+	philo_eating(philo);
 	return (NULL);
 }
 

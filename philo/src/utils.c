@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:29:14 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/01 16:54:33 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/01 17:07:39 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,15 @@ long long	time_stamp(void)
     
     gettimeofday(&currentTime, NULL);
 	return ((currentTime.tv_sec) + (currentTime.tv_usec));
+}
+
+/**
+ * @brief Depending of the action, prints the time and message of the action
+ * @param time The time stamp of the action
+ * @param id The id of the thread doing the action
+ * @param action The string to print
+*/
+void    print_action(int time, int id, char *action)
+{
+    printf("%d Philo %d %s\n", time_to_action(time), id, action);
 }
