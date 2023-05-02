@@ -6,7 +6,7 @@
 #    By: acouture <acouture@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 15:51:56 by acouture          #+#    #+#              #
-#    Updated: 2023/05/01 17:09:48 by acouture         ###   ########.fr        #
+#    Updated: 2023/05/02 14:30:10 by acouture         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ OBJ_PATH = obj/
 HEADERS	:= -I ./include
 SRC		:= main.c \
 			utils.c \
-			threads_checks.c
+			threads_checks.c \
+			init.c
 
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))

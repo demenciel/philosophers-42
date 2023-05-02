@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/01 17:06:10 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:38:13 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_H
 
 # include <pthread.h>
+# include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
@@ -30,9 +31,8 @@ typedef struct s_philo
 {
 	pthread_t		thread_id;
 	struct s_data	*data;
+	bool			is_dead;
 	int				philo_id;
-	int				fork_id;
-	int				status;
 	int				nb_time_eat;
 	int				time_last_meal;
 }					t_philo;
@@ -44,10 +44,11 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				nb_of_philo;
 	int				start_time;
+	pthread_mutex_t	fork_access;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	eating;
 	t_philo			philo[200];
-
+	pthread_t		monitor_thread;
 }					t_data;
 
 // UTILS ---------------------------------------------------------------------
@@ -63,5 +64,12 @@ int					init_data(char **av);
 
 // Threads Checks
 int					philo_eating(t_philo *philo);
+void				*checks_for_death(void *arg);
+
+// Init
+int					init_mutex(void);
+void				init_philo(t_philo *philo_struct);
+int					init_data(char **av);
+int					init_all(char **av);
 
 #endif
