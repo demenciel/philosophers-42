@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:29:14 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/01 17:28:26 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/03 10:16:18 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_atoi(char *s)
  * @param end_time The time stamp of the call to action
  * @return The time elapsed since the start of the program
 */
-int	time_to_action(long long end_time)
+long long	time_to_action(long long end_time)
 {
 	return (end_time - call_struct()->start_time);
 }
@@ -83,7 +83,7 @@ long long	time_stamp(void)
  * @param id The id of the thread doing the action
  * @param action The string to print
 */
-void	print_action(int time, int id, char *action)
+void	print_action(long long time, int id, char *action)
 {
-	printf("%d Philo %d %s\n", time_to_action(time), id, action);
+	printf("%lld Philo %d %s\n", time_to_action(time), id, action);
 }

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/02 15:38:13 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/05 14:20:16 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				nb_of_philo;
+	int				must_eat;
 	int				start_time;
 	pthread_mutex_t	fork_access;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	eating;
+	pthread_mutex_t	sleeping;
 	t_philo			philo[200];
 	pthread_t		monitor_thread;
 }					t_data;
@@ -54,22 +56,21 @@ typedef struct s_data
 // UTILS ---------------------------------------------------------------------
 int					ft_atoi(char *s);
 long long			time_stamp(void);
-int					time_to_action(long long end_time);
+long long			time_to_action(long long end_time);
 int					check_av(char **av, int ac);
-void				print_action(int time, int id, char *action);
+void				print_action(long long time, int id, char *action);
 
-// MAIN
+// MAIN ---------------------------------------------------------------------
 t_data				*call_struct(void);
-int					init_data(char **av);
 
-// Threads Checks
-int					philo_eating(t_philo *philo);
-void				*checks_for_death(void *arg);
+// THREAD CHECK
+void				philo_eating(t_philo *philo);
+int				check_for_death(void);
 
-// Init
-int					init_mutex(void);
-void				init_philo(t_philo *philo_struct);
-int					init_data(char **av);
-int					init_all(char **av);
+// INIT
+void				init_all(char **av);
+void				init_data(char **av);
+void				init_mutex(void);
+void				init_philo(void);
 
 #endif
