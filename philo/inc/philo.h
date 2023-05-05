@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/05 15:59:04 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:31:01 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,10 @@ void				print_action(long long time, int id, char *action);
 // MAIN ---------------------------------------------------------------------
 t_data				*call_struct(void);
 
+// ACTIONS
+void				philo_eating(t_philo *philo);
+int					take_forks(int id);
+
 // THREADS
 int					launch_philo(void);
 void				*routine(void *void_philo);
@@ -68,6 +72,7 @@ void				*routine(void *void_philo);
 // INIT
 int					init_all(char **av);
 int					init_args(char **av);
-void				init_philo();
+void				init_philo(void);
+void				init_mutex(void);
 
 #endif

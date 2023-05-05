@@ -6,7 +6,7 @@
 #    By: acouture <acouture@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 15:51:56 by acouture          #+#    #+#              #
-#    Updated: 2023/05/05 15:32:55 by acouture         ###   ########.fr        #
+#    Updated: 2023/05/05 16:15:39 by acouture         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ HEADERS	:= -I ./include
 SRC		:= main.c \
 			utils.c \
 			threads.c \
+			actions.c \
 			init.c
 
 

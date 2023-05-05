@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:30:16 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/05 16:01:15 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/05 16:35:55 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	init_all(char **av)
 {
-	
 	if (!init_args(av))
 		return (EXIT_FAILURE);
+	init_mutex();
 	return (EXIT_SUCCESS);
 }
 
@@ -62,7 +62,8 @@ void	init_mutex()
 	i = 0;
 	while (i < call_struct()->nb_of_philo)
 	{
-		pthread_mutex_init(&call_struct()->fork[i], NULL);
+		if (pthread_mutex_init(&call_struct()->fork[i], NULL) != 0)
+			printf("init failed");
 		i++;
 	}
 }
