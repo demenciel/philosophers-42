@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/05 14:20:16 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/05 15:59:04 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 typedef struct s_philo
 {
 	pthread_t		thread_id;
-	struct s_data	*data;
 	bool			is_dead;
 	int				philo_id;
 	int				nb_time_eat;
@@ -45,7 +44,6 @@ typedef struct s_data
 	int				nb_of_philo;
 	int				must_eat;
 	int				start_time;
-	pthread_mutex_t	fork_access;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	eating;
 	pthread_mutex_t	sleeping;
@@ -63,14 +61,13 @@ void				print_action(long long time, int id, char *action);
 // MAIN ---------------------------------------------------------------------
 t_data				*call_struct(void);
 
-// THREAD CHECK
-void				philo_eating(t_philo *philo);
-int				check_for_death(void);
+// THREADS
+int					launch_philo(void);
+void				*routine(void *void_philo);
 
 // INIT
-void				init_all(char **av);
-void				init_data(char **av);
-void				init_mutex(void);
-void				init_philo(void);
+int					init_all(char **av);
+int					init_args(char **av);
+void				init_philo();
 
 #endif
