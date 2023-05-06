@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:29:14 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/03 10:16:18 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:06:26 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_atoi(char *s)
  * @param end_time The time stamp of the call to action
  * @return The time elapsed since the start of the program
 */
-long long	time_to_action(long long end_time)
+u_int64_t	time_to_action(uint64_t end_time)
 {
-	return (end_time - call_struct()->start_time);
+	return ((end_time - call_struct()->start_time));
 }
 
 /**
@@ -69,21 +69,23 @@ int	check_av(char **av, int ac)
  * @brief Using gettimeofday(), creates a time stamp
  * @return The time stamp
 */
-long long	time_stamp(void)
+u_int64_t	time_stamp(void)
 {
 	struct timeval	currentTime;
 
 	gettimeofday(&currentTime, NULL);
-	return ((currentTime.tv_sec) + (currentTime.tv_usec));
+	return ((currentTime.tv_sec * 1000) + (currentTime.tv_usec / 1000));
 }
 
 /**
  * @brief Depending of the action, prints the time and message of the action
- * @param time The time stamp of the action
  * @param id The id of the thread doing the action
  * @param action The string to print
 */
-void	print_action(long long time, int id, char *action)
+void	print_action(int id, char *action)
 {
-	printf("%lld Philo %d %s\n", time_to_action(time), id, action);
+	u_int64_t current_time = time_stamp();
+	u_int64_t elapsed_time = time_to_action(current_time);
+	
+	printf("%lld ms : Philo %d %s\n", elapsed_time, id, action);
 }

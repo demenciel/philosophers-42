@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:30:16 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/06 13:31:10 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:09:24 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,24 @@ int	init_all(char **av)
 
 int	init_args(char **av)
 {
-	call_struct()->nb_of_philo = ft_atoi(av[1]);
-	if (call_struct()->nb_of_philo <= 0)
+	t_data *data;
+
+	data = call_struct();
+	data->nb_of_philo = ft_atoi(av[1]);
+	if (data->nb_of_philo <= 0)
 		return (EXIT_FAILURE);
-	call_struct()->time_to_die = ft_atoi(av[2]);
-	if (call_struct()->time_to_die < 60)
+	data->time_to_die = ft_atoi(av[2]);
+	if (data->time_to_die < 60)
 		return (EXIT_FAILURE);
-	call_struct()->time_to_eat = ft_atoi(av[3]);
-	if (call_struct()->time_to_eat < 60)
+	data->time_to_eat = ft_atoi(av[3]);
+	if (data->time_to_eat < 60)
 		return (EXIT_FAILURE);
-	call_struct()->time_to_sleep = ft_atoi(av[4]);
-	if (call_struct()->time_to_sleep < 60)
+	data->time_to_sleep = ft_atoi(av[4]);
+	if (data->time_to_sleep < 60)
 		return (EXIT_FAILURE);
 	if (av[5])
-		call_struct()->must_eat = ft_atoi(av[5]);
+		data->must_eat = ft_atoi(av[5]);
+	data->dead = false;
 	return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:44:15 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/05 15:41:05 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:20:29 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ t_data	*call_struct(void)
 	static t_data	data;
 
 	return (&data);
+}
+
+void	my_sleep(uint64_t time)
+{
+	uint64_t	start_time;
+	t_data *data;
+
+	data = call_struct();
+	start_time = time_stamp();
+	while (((time_stamp() - start_time) < time) && data->dead == false)
+		usleep(50);
 }
 
 int	main(int ac, char **av)

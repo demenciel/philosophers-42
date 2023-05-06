@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:15:17 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/06 13:37:40 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:13:27 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ void    philo_eating(t_philo *philo)
 
     eating = &call_struct()->eating;
     pthread_mutex_lock(eating);
-    print_action(time_stamp(), philo->philo_id, PHILO_EATING);
+    print_action(philo->philo_id, PHILO_EATING);
     philo->time_last_meal = time_stamp();
+    my_sleep(call_struct()->time_to_eat);
     philo->nb_time_eat++;
     pthread_mutex_unlock(eating);
 }
@@ -35,9 +36,9 @@ void    philo_forks(t_philo *philo)
     fork2 = &call_struct()->fork[(philo->philo_id + 1) % nb_philo];
 
     pthread_mutex_lock(fork1);
-    print_action(time_stamp(), philo->philo_id, FORK_TAKEN);
+    print_action(philo->philo_id, FORK_TAKEN);
     pthread_mutex_lock(fork2);
-    print_action(time_stamp(), philo->philo_id, FORK_TAKEN);
+    print_action(philo->philo_id, FORK_TAKEN);
     philo_eating(philo);
     pthread_mutex_unlock(fork1);
     pthread_mutex_unlock(fork2);

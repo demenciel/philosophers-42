@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/06 13:36:22 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:19:57 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				nb_of_philo;
 	int				must_eat;
-	int				start_time;
+	uint64_t		start_time;
+	bool			dead;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	eating;
 	pthread_mutex_t	sleeping;
@@ -52,13 +53,14 @@ typedef struct s_data
 
 // UTILS ---------------------------------------------------------------------
 int					ft_atoi(char *s);
-long long			time_stamp(void);
-long long			time_to_action(long long end_time);
+u_int64_t			time_stamp(void);
+u_int64_t			time_to_action(uint64_t end_time);
 int					check_av(char **av, int ac);
-void				print_action(long long time, int id, char *action);
+void				print_action(int id, char *action);
 
 // MAIN ---------------------------------------------------------------------
 t_data				*call_struct(void);
+void				my_sleep(uint64_t time);
 
 // ACTIONS
 void				philo_forks(t_philo *philo);
