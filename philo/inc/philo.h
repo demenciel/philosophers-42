@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/05 16:31:01 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:36:22 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ typedef struct s_data
 	pthread_mutex_t	eating;
 	pthread_mutex_t	sleeping;
 	t_philo			philo[200];
-	pthread_t		monitor_thread;
 }					t_data;
 
 // UTILS ---------------------------------------------------------------------
@@ -62,8 +61,8 @@ void				print_action(long long time, int id, char *action);
 t_data				*call_struct(void);
 
 // ACTIONS
+void				philo_forks(t_philo *philo);
 void				philo_eating(t_philo *philo);
-int					take_forks(int id);
 
 // THREADS
 int					launch_philo(void);

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 17:01:47 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/05 16:35:47 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:42:30 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void    *routine(void *void_philo)
 {
     t_philo *philo;
 
+    if (call_struct()->start_time == 0)
+        call_struct()->start_time = time_stamp();
     philo = (t_philo *)void_philo;
-    if(take_forks(philo->philo_id) != 0)
-        return (NULL);
-    for (int i = 0; i < 5; i++) {
-        printf("%d\n", i);
-    }
-    // philo_eating(philo);
+    philo_forks(philo);
+    
     return (NULL);
 }
 
@@ -39,13 +37,21 @@ int wait_thread()
     return (EXIT_SUCCESS);
 }
 
+int check_death()
+{
+    int i;
+
+    i = 0;
+    while ()
+}
+
 int launch_philo()
 {
     int i = 0;
     t_philo *philo;
 
-    call_struct()->start_time = time_stamp();
     init_philo();
+    init_mutex();
     while (i < call_struct()->nb_of_philo)
     {
         philo = &call_struct()->philo[i];
@@ -54,6 +60,8 @@ int launch_philo()
         i++;
     }
     if (wait_thread() != 0)
+        return (EXIT_FAILURE);
+    if (check_death() != 0)
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }

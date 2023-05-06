@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:30:16 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/05 16:35:55 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:31:10 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	init_all(char **av)
 {
 	if (!init_args(av))
 		return (EXIT_FAILURE);
-	init_mutex();
 	return (EXIT_SUCCESS);
 }
 
@@ -66,4 +65,6 @@ void	init_mutex()
 			printf("init failed");
 		i++;
 	}
+	pthread_mutex_init(&call_struct()->eating, NULL);
+	pthread_mutex_init(&call_struct()->sleeping, NULL);
 }
