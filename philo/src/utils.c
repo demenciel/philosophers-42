@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:29:14 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/06 15:06:26 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:49:46 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,10 @@ u_int64_t	time_stamp(void)
 */
 void	print_action(int id, char *action)
 {
-	u_int64_t current_time = time_stamp();
-	u_int64_t elapsed_time = time_to_action(current_time);
+	u_int64_t current_time;
+	u_int64_t elapsed_time;
 	
+	current_time = time_stamp();
+	elapsed_time = time_to_action(current_time);
 	printf("%lld ms : Philo %d %s\n", elapsed_time, id, action);
 }

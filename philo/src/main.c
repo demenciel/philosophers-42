@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:44:15 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/06 15:20:29 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 15:54:59 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	my_sleep(uint64_t time)
 
 	data = call_struct();
 	start_time = time_stamp();
-	while (((time_stamp() - start_time) < time) && data->dead == false)
+	while (((time_stamp() - start_time) < time))
 		usleep(50);
 }
 

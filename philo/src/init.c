@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:30:16 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/06 15:09:24 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:11:59 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	init_args(char **av)
 	if (av[5])
 		data->must_eat = ft_atoi(av[5]);
 	data->dead = false;
+	data->all_ate = false;
 	return (EXIT_SUCCESS);
 }
 
@@ -71,4 +72,5 @@ void	init_mutex()
 	}
 	pthread_mutex_init(&call_struct()->eating, NULL);
 	pthread_mutex_init(&call_struct()->sleeping, NULL);
+	pthread_mutex_init(&call_struct()->death_checker, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/06 15:19:57 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:11:43 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define PHILO_EATING "is eating"
 # define PHILO_SLEEPING "is sleeping"
 # define PHILO_THINKING "is thinking"
-# define PHILO_DEAD "died"
+# define PHILO_DEAD "DEAD"
 
 typedef struct s_philo
 {
@@ -33,7 +33,7 @@ typedef struct s_philo
 	bool			is_dead;
 	int				philo_id;
 	int				nb_time_eat;
-	int				time_last_meal;
+	uint64_t		time_last_meal;
 }					t_philo;
 
 typedef struct s_data
@@ -43,12 +43,15 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				nb_of_philo;
 	int				must_eat;
+	bool			all_ate;
 	uint64_t		start_time;
 	bool			dead;
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	eating;
 	pthread_mutex_t	sleeping;
 	t_philo			philo[200];
+	pthread_t		death;
+	pthread_mutex_t	death_checker;
 }					t_data;
 
 // UTILS ---------------------------------------------------------------------
@@ -69,6 +72,7 @@ void				philo_eating(t_philo *philo);
 // THREADS
 int					launch_philo(void);
 void				*routine(void *void_philo);
+int					check_death(void);
 
 // INIT
 int					init_all(char **av);
