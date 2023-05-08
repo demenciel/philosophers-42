@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 14:30:16 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/08 17:11:59 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:36:09 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	init_all(char **av)
 
 int	init_args(char **av)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = call_struct();
 	data->nb_of_philo = ft_atoi(av[1]);
@@ -43,10 +43,10 @@ int	init_args(char **av)
 	return (EXIT_SUCCESS);
 }
 
-void	init_philo()
+void	init_philo(void)
 {
-	int i;
-	t_philo *philo;
+	int		i;
+	t_philo	*philo;
 
 	i = 0;
 	while (i < call_struct()->nb_of_philo)
@@ -59,10 +59,10 @@ void	init_philo()
 	}
 }
 
-void	init_mutex()
+void	init_mutex(void)
 {
 	int i;
-	
+
 	i = 0;
 	while (i < call_struct()->nb_of_philo)
 	{
@@ -73,4 +73,5 @@ void	init_mutex()
 	pthread_mutex_init(&call_struct()->eating, NULL);
 	pthread_mutex_init(&call_struct()->sleeping, NULL);
 	pthread_mutex_init(&call_struct()->death_checker, NULL);
+	pthread_mutex_init(&call_struct()->printing, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 14:29:14 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/08 15:49:46 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:35:45 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,16 @@ u_int64_t	time_stamp(void)
 */
 void	print_action(int id, char *action)
 {
+	t_data *data;
 	u_int64_t current_time;
 	u_int64_t elapsed_time;
-	
+
+	data = call_struct();
 	current_time = time_stamp();
 	elapsed_time = time_to_action(current_time);
-	printf("%lld ms : Philo %d %s\n", elapsed_time, id, action);
+
+	pthread_mutex_lock(&data->printing);
+	if (data->dead == false && data->all_ate == false)
+		printf("%lld ms : Philo %d %s\n", elapsed_time, id, action);
+	pthread_mutex_unlock(&data->printing);
 }

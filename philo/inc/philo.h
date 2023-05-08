@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:45:36 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/08 17:11:43 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:31:18 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_data
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	eating;
 	pthread_mutex_t	sleeping;
+	pthread_mutex_t	printing;
 	t_philo			philo[200];
 	pthread_t		death;
 	pthread_mutex_t	death_checker;

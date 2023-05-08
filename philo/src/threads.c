@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 17:01:47 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/08 17:19:16 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/08 17:41:13 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*routine(void *void_philo)
 	philo = (t_philo *)void_philo;
 	if (philo->philo_id % 2 == 0)
 		my_sleep(data->time_to_eat);
-	check_death();
+	if (check_death() == 1)
+		return (NULL);
 	while (data->dead == false && data->all_ate == false)
 	{
 		if (data->must_eat && philo->philo_id == data->nb_of_philo)
@@ -39,15 +40,15 @@ void	*routine(void *void_philo)
 
 int	wait_thread(void)
 {
-	int	i;
-	t_data *data;
+	int		i;
+	t_data	*data;
 
 	i = 0;
 	data = call_struct();
 	while (i < call_struct()->nb_of_philo)
 	{
 		pthread_join(call_struct()->philo[i].thread_id, NULL);
-		if (data->all_ate)
+		if (data->all_ate == true || data->dead == true)
 			return (1);
 		i++;
 	}
@@ -70,11 +71,11 @@ int	check_death(void)
 	{
 		philo = &call_struct()->philo[i];
 		time_check = time_stamp() - philo->time_last_meal;
-		if (time_check > time_to_die)
+		if (time_check >= time_to_die)
 		{
 			print_action(philo->philo_id, PHILO_DEAD);
 			call_struct()->dead = true;
-			return (EXIT_FAILURE);
+			return (1);
 		}
 		i++;
 	}
@@ -96,10 +97,10 @@ int	launch_philo(void)
 		philo = &call_struct()->philo[i];
 		philo->time_last_meal = time_stamp();
 		if (pthread_create(&philo->thread_id, NULL, routine, philo) != 0)
-			return (EXIT_FAILURE);
+			return (0);
 		i++;
 	}
 	if (wait_thread() != 0)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
+		return (0);
+	return (0);
 }
