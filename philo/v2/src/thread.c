@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/09 17:40:38 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/09 17:41:36 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void    *routine(void *param)
     data = call_struct();
 
     pthread_mutex_lock(data->mutex.fork);
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 2; i++) {
         printf("Philo %d - %d\n", philo->philo_id, i);
     }
     print_action(philo->philo_id, time_stamp(), "DONE");
