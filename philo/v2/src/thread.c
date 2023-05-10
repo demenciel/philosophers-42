@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/10 15:01:46 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:47:11 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,8 @@ void	*routine(void *param)
 	data = call_struct();
 	if (philo->philo_id % 2 == 0)
 		usleep(data->time_to_eat * 500);
-	philo->time_last_meal = time_stamp();
-	while (!data->dead && !data->full)
+	while (check_death() == 0 && !data->full)
 	{
-		if (check_death() == 1)
-			return (NULL);
 		if (check_full() == 1)
 			return (NULL);
 		philo_fork(philo);
@@ -77,16 +74,16 @@ int	check_death(void)
 	data = call_struct();
 	while (i < data->nb_philo)
 	{
-		pthread_mutex_lock(&call_struct()->mutex.death_mutex);
 		philo = &data->philo[i];
+		pthread_mutex_lock(&call_struct()->mutex.death_mutex);
 		time_check = time_stamp() - philo->time_last_meal;
+		pthread_mutex_unlock(&call_struct()->mutex.death_mutex);
 		if (time_check >= call_struct()->time_to_die)
 		{
 			print_action(philo->philo_id, time_stamp(), PHILO_DEAD);
 			call_struct()->dead = true;
 			return (1);
 		}
-		pthread_mutex_unlock(&call_struct()->mutex.death_mutex);
 		i++;
 	}
 	return (0);

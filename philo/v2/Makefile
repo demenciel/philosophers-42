@@ -6,12 +6,13 @@
 #    By: acouture <acouture@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 15:51:56 by acouture          #+#    #+#              #
-#    Updated: 2023/05/09 16:31:36 by acouture         ###   ########.fr        #
+#    Updated: 2023/05/10 15:47:25 by acouture         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= philo
-CFLAGS	:= -g -pthread -Wextra -Wall -Werror
+CFLAGS  := -pthread -Wextra -Wall -Werror -g
+# LDFLAGS := -fsanitize=thread
 
 SRC_PATH = src/
 OBJ_PATH = obj/
@@ -37,10 +38,10 @@ all: $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(HEADERS) 
 
 $(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(HEADERS) -o $(NAME)
+	@$(CC) $(LDFLAGS) $(OBJS) $(HEADERS) -o $(NAME)
 	@printf "$(GREEN)philo compiling: done$(RESET)\n"
 
 debug: $(NAME)

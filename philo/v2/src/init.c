@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/10 14:41:26 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:28:29 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,9 @@ int init_mutex()
         i++;
     }
     pthread_mutex_init(&data->mutex.check_death, NULL);
-    pthread_mutex_init(&data->mutex.fork_taken, NULL);
     pthread_mutex_init(&data->mutex.eat, NULL);
     pthread_mutex_init(&data->mutex.print, NULL);
-    pthread_mutex_init(&data->mutex.sleep, NULL);
+    pthread_mutex_init(&data->mutex.last_meal, NULL);
     return (0);
 }
 

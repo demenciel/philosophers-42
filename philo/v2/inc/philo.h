@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/10 14:43:43 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:34:44 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ typedef struct s_philo
 typedef struct s_mutex
 {
 	pthread_mutex_t	fork[200];
-	pthread_mutex_t	fork_taken;
 	pthread_mutex_t	death_mutex;
+	pthread_mutex_t	change_state;
+	pthread_mutex_t	last_meal;
 	pthread_mutex_t	print;
 	pthread_mutex_t	eat;
 	pthread_mutex_t	check_death;
-	pthread_mutex_t	sleep;
 }					t_mutex;
 
 typedef struct s_data
