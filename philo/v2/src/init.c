@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/09 17:21:17 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/10 09:53:12 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void    init_args(char **av)
         data->must_eat = ft_atoi(av[5]);
     else
         data->must_eat = 0;
+    data->dead = false;
 }
 
 void    init_philo()
@@ -48,7 +49,6 @@ void    init_philo()
     {
         philo = &data->philo[i];
         philo->nb_eat = 0;
-        philo->time_last_meal = 0;
         philo->philo_id = (i + 1);
         i++;
     }
@@ -68,6 +68,7 @@ int init_mutex()
         i++;
     }
     pthread_mutex_init(&data->mutex.check_death, NULL);
+    pthread_mutex_init(&data->mutex.fork_taken, NULL);
     pthread_mutex_init(&data->mutex.eat, NULL);
     pthread_mutex_init(&data->mutex.print, NULL);
     pthread_mutex_init(&data->mutex.sleep, NULL);

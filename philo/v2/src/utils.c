@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:27:41 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/09 17:43:58 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:12:43 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ int check_av(char **av)
     return (0);
 }
 
+void	my_sleep(uint64_t time)
+{
+	uint64_t	goal;
+
+	goal = time_stamp() + time;
+	while (1)
+	{
+		if (time_stamp() >= goal)
+			return ;
+		usleep(50);
+	}
+}
+
 uint64_t time_stamp()
 {
     struct timeval currentTime;
@@ -56,9 +69,12 @@ int print_action(int philo_id, uint64_t stamp, char *action)
     uint64_t time_diff;
 
     data = call_struct();
-    time_diff = (stamp - data->start_time);
-    pthread_mutex_lock(&data->mutex.print);
-    printf("%lld ms : Philo %d %s\n", time_diff, philo_id, action);
-    pthread_mutex_unlock(&data->mutex.print);
+    if (data->dead == false)
+    {
+        time_diff = (stamp - data->start_time);
+        pthread_mutex_lock(&data->mutex.print);
+        printf("%lld ms : Philo %d %s\n", time_diff, philo_id, action);
+        pthread_mutex_unlock(&data->mutex.print);
+    }
     return (0);
 }
