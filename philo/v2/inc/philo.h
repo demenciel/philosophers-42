@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/10 14:08:16 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:43:43 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PHILO_EATING "is eating"
 # define PHILO_SLEEPING "is sleeping"
 # define PHILO_THINKING "is thinking"
-# define PHILO_DEAD "DEAD"
+# define PHILO_DEAD "died"
 
 typedef struct s_philo
 {
@@ -52,6 +52,7 @@ typedef struct s_data
 	t_mutex			mutex;
 	t_philo			philo[200];
 	bool			dead;
+	bool 			full;
 	int				nb_philo;
 	int				time_to_die;
 	int				time_to_eat;

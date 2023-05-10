@@ -6,12 +6,16 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/10 14:14:29 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/10 15:01:46 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+/**
+ * The routine being executed by each philosopher
+ * Eating, sleeping, thinking
+*/
 void	*routine(void *param)
 {
 	t_philo	*philo;
@@ -20,11 +24,13 @@ void	*routine(void *param)
 	philo = (t_philo *)param;
 	data = call_struct();
 	if (philo->philo_id % 2 == 0)
-		usleep(data->time_to_eat * 1000);
+		usleep(data->time_to_eat * 500);
 	philo->time_last_meal = time_stamp();
-	while (!data->dead)
+	while (!data->dead && !data->full)
 	{
 		if (check_death() == 1)
+			return (NULL);
+		if (check_full() == 1)
 			return (NULL);
 		philo_fork(philo);
 		if (check_death() != 1)
@@ -34,18 +40,32 @@ void	*routine(void *param)
 	return (NULL);
 }
 
-int check_full()
+/**
+ * If arg[5] is present,
+	checks if every philo as eaten for args[5] amount of time
+*/
+int	check_full(void)
 {
-	t_data *data;
-	t_philo *philo;
+	t_data	*data;
+	t_philo	*philo;
 
 	data = call_struct();
-	philo = &data->philo[data->nb_philo];
-	if (philo->nb_eat == data->must_eat)
-		return (1);
+	philo = &data->philo[data->nb_philo - 1];
+	if (data->must_eat)
+	{
+		if (philo->nb_eat == data->must_eat)
+		{
+			data->full = true;
+			return (1);
+		}
+	}
 	return (0);
 }
 
+/**
+ * For each philo,
+	checks if the time since the last meal as exceeded time_to_die
+*/
 int	check_death(void)
 {
 	int		time_check;
@@ -58,7 +78,7 @@ int	check_death(void)
 	while (i < data->nb_philo)
 	{
 		pthread_mutex_lock(&call_struct()->mutex.death_mutex);
-        philo = &data->philo[i];
+		philo = &data->philo[i];
 		time_check = time_stamp() - philo->time_last_meal;
 		if (time_check >= call_struct()->time_to_die)
 		{
@@ -67,11 +87,14 @@ int	check_death(void)
 			return (1);
 		}
 		pthread_mutex_unlock(&call_struct()->mutex.death_mutex);
-        i++;
+		i++;
 	}
 	return (0);
 }
 
+/**
+ * Waits for each of the threads to be completed
+*/
 void	wait_thread(void)
 {
 	t_philo	*philo;
@@ -88,6 +111,9 @@ void	wait_thread(void)
 	}
 }
 
+/**
+ * Creates and launches all of the threads
+*/
 void	launcher(void)
 {
 	int i;
@@ -104,7 +130,7 @@ void	launcher(void)
 		pthread_create(&philo->thread_id, NULL, routine, philo);
 		i++;
 	}
-    check_death();
+	check_death();
 	check_full();
 	wait_thread();
 }
