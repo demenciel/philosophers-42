@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/10 16:39:35 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:33:41 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void    init_args(char **av)
         data->must_eat = 0;
     data->dead = false;
     data->full = false;
+    data->last_meal_stamped = false;
 }
 
 void    init_philo()

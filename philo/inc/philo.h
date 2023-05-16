@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/10 16:26:45 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:58:15 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # define PHILO_EATING "is eating"
 # define PHILO_SLEEPING "is sleeping"
 # define PHILO_THINKING "is thinking"
-# define PHILO_DEAD "died"
+# define PHILO_DEAD "DEAD"
 
 typedef struct s_philo
 {
@@ -39,7 +39,6 @@ typedef struct s_philo
 typedef struct s_mutex
 {
 	pthread_mutex_t	fork[200];
-	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	change_state;
 	pthread_mutex_t	last_meal;
 	pthread_mutex_t	print;
@@ -53,6 +52,7 @@ typedef struct s_data
 	t_philo			philo[200];
 	bool			dead;
 	bool			full;
+	bool			last_meal_stamped;
 	int				nb_philo;
 	int				time_to_die;
 	int				time_to_eat;
@@ -64,6 +64,7 @@ typedef struct s_data
 // MAIN
 t_data				*call_struct(void);
 void				destroy_mutex(void);
+void				stamp_last_meal(void);
 
 // UTILS
 void				my_sleep(uint64_t time);
@@ -88,4 +89,6 @@ int					check_full(void);
 // ACTIONS
 void				philo_fork(t_philo *philo);
 void				philo_sleeping(t_philo *philo);
+void				philo_eating(t_philo *philo);
+
 #endif

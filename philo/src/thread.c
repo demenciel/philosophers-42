@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/16 15:25:33 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:56:29 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ int	check_full(void)
 	philo = &data->philo[data->nb_philo - 1];
 	if (data->must_eat)
 	{
+		pthread_mutex_lock(&data->mutex.check_death);
 		if (philo->nb_eat == data->must_eat)
 		{
 			data->full = true;
 			return (1);
 		}
+		pthread_mutex_unlock(&data->mutex.check_death);
 	}
 	return (0);
 }
@@ -75,9 +77,9 @@ int	check_death(void)
 	while (i < data->nb_philo)
 	{
 		philo = &data->philo[i];
-		pthread_mutex_lock(&data->mutex.death_mutex);
+		pthread_mutex_lock(&data->mutex.last_meal);
 		time_check = time_stamp() - philo->time_last_meal;
-		pthread_mutex_unlock(&data->mutex.death_mutex);
+		pthread_mutex_unlock(&data->mutex.last_meal);
 		if (time_check >= data->time_to_die)
 		{
 			print_action(philo->philo_id, time_stamp(), PHILO_DEAD);
@@ -125,9 +127,9 @@ void	launcher(void)
 	while (i < data->nb_philo)
 	{
 		philo = &data->philo[i];
-		// pthread_mutex_lock(&data->mutex.last_meal);
-		philo->time_last_meal = time_stamp();
-		// pthread_mutex_unlock(&data->mutex.last_meal);
+		pthread_mutex_lock(&data->mutex.last_meal);
+		stamp_last_meal();
+		pthread_mutex_unlock(&data->mutex.last_meal);
 		pthread_create(&philo->thread_id, NULL, routine, philo);
 		i++;
 	}
