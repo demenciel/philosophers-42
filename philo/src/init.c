@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/16 15:33:41 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/17 07:19:32 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int init_mutex()
     }
     pthread_mutex_init(&data->mutex.check_death, NULL);
     pthread_mutex_init(&data->mutex.eat, NULL);
-    pthread_mutex_init(&data->mutex.print, NULL);
     pthread_mutex_init(&data->mutex.last_meal, NULL);
     pthread_mutex_init(&data->mutex.change_state, NULL);
+    pthread_mutex_init(&data->mutex.check_full, NULL);
     return (0);
 }
 
@@ -90,8 +90,8 @@ void    destroy_mutex()
         i++;
     }
     pthread_mutex_destroy(&data->mutex.check_death);
+    pthread_mutex_destroy(&data->mutex.check_full);
     pthread_mutex_destroy(&data->mutex.eat);
-    pthread_mutex_destroy(&data->mutex.print);
     pthread_mutex_destroy(&data->mutex.last_meal);
     pthread_mutex_destroy(&data->mutex.change_state);
 }

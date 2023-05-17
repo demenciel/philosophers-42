@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/16 15:56:29 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/17 07:13:12 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,23 @@ void	*routine(void *param)
 {
 	t_philo	*philo;
 	t_data	*data;
+	bool	full;
 
 	philo = (t_philo *)param;
 	data = call_struct();
 	if (philo->philo_id % 2 == 0)
 		usleep(data->time_to_eat * 500);
-	while (check_death() == 0 && !data->full)
+	pthread_mutex_lock(&data->mutex.check_full);
+	full = data->full;
+	pthread_mutex_unlock(&data->mutex.check_full);
+	while (check_death() == 0 && !full)
 	{
+		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
 		if (check_full() == 1)
 			return (NULL);
 		philo_fork(philo);
 		if (check_death() != 1)
 			philo_sleeping(philo);
-		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
 	}
 	return (NULL);
 }
@@ -45,18 +49,22 @@ int	check_full(void)
 {
 	t_data	*data;
 	t_philo	*philo;
+	int		nb_eat;
 
 	data = call_struct();
 	philo = &data->philo[data->nb_philo - 1];
+	pthread_mutex_lock(&data->mutex.check_full);
+	nb_eat = philo->nb_eat;
+	pthread_mutex_unlock(&data->mutex.check_full);
 	if (data->must_eat)
 	{
-		pthread_mutex_lock(&data->mutex.check_death);
-		if (philo->nb_eat == data->must_eat)
+		if (nb_eat == data->must_eat)
 		{
+			pthread_mutex_lock(&data->mutex.check_full);
 			data->full = true;
+			pthread_mutex_unlock(&data->mutex.check_full);
 			return (1);
 		}
-		pthread_mutex_unlock(&data->mutex.check_death);
 	}
 	return (0);
 }
