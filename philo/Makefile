@@ -6,7 +6,7 @@
 #    By: acouture <acouture@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 15:51:56 by acouture          #+#    #+#              #
-#    Updated: 2023/05/16 15:58:24 by acouture         ###   ########.fr        #
+#    Updated: 2023/05/17 13:38:42 by acouture         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC		:= main.c \
 			utils.c \
 			thread.c \
 			actions.c \
-			init.c
+			init.c \
+			checkers.c
 
 
 SRCS	= $(addprefix $(SRC_PATH), $(SRC))

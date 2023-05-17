@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:20:35 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/16 15:44:41 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/17 07:44:18 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	launcher();
+	destroy_mutex();
 }

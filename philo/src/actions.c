@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 07:57:39 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/17 07:01:01 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/17 09:06:30 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,35 @@ void	philo_eating(t_philo *philo)
  * Depending on the philo,
 	picks up the right forks for its position around the table
 */
-void	philo_fork(t_philo *philo)
+void philo_fork(t_philo *philo)
 {
-	t_data			*data;
-	pthread_mutex_t	*fork1;
-	pthread_mutex_t	*fork2;
+    t_data *data;
+    pthread_mutex_t *fork1;
+    pthread_mutex_t *fork2;
 
-	data = call_struct();
-	fork1 = &data->mutex.fork[philo->philo_id - 1];
-	fork2 = &data->mutex.fork[(philo->philo_id) % data->nb_philo];
-	pthread_mutex_lock(fork1);
-	if (check_death() != 1)
-	{
-		print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
-		pthread_mutex_lock(fork2);
-		print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
-	}
-	philo_eating(philo);
-	pthread_mutex_unlock(fork1);
-	pthread_mutex_unlock(fork2);
+    data = call_struct();
+    if (philo->philo_id - 1 < ((philo->philo_id) % data->nb_philo))
+    {
+        fork1 = &data->mutex.fork[philo->philo_id - 1];
+        fork2 = &data->mutex.fork[(philo->philo_id) % data->nb_philo];
+    }
+    else
+    {
+        fork1 = &data->mutex.fork[(philo->philo_id) % data->nb_philo];
+        fork2 = &data->mutex.fork[philo->philo_id - 1];
+    }
+    pthread_mutex_lock(fork1);
+    if (check_death() != 1)
+    {
+        print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
+        pthread_mutex_lock(fork2);
+        print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
+    }
+    philo_eating(philo);
+    pthread_mutex_unlock(fork1);
+    pthread_mutex_unlock(fork2);
 }
+
 
 /**
  * Puts the thread to sleep for time_to_sleep amount of time
@@ -62,10 +71,13 @@ void	philo_fork(t_philo *philo)
 void	philo_sleeping(t_philo *philo)
 {
 	t_data *data;
+	bool	dead;
 
 	data = call_struct();
-
-	if (data->dead == false)
+	pthread_mutex_lock(&data->mutex.change_state);
+	dead = data->dead;
+	pthread_mutex_unlock(&data->mutex.change_state);
+	if (dead == false)
 	{
 		print_action(philo->philo_id, time_stamp(), PHILO_SLEEPING);
 		my_sleep(data->time_to_sleep);
