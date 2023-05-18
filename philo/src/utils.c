@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:27:41 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/17 07:41:35 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:47:43 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,18 @@ int	ft_atoi(char *s)
 /**
  * Check if each of the inputs are only positive ints
 */
-int	check_av(char **av)
+int	check_av(char **av, int ac)
 {
-	int	i;
-	int	j;
+	int j;
+	int i;
 
 	i = 1;
-	while (av[i])
+	while (i < ac)
 	{
 		j = 0;
 		while (av[i][j])
 		{
-			if (av[i][j] >= '9' && av[i][j] <= '0')
+			if (av[i][j] > '9' || av[i][j] < '0')
 				return (1);
 			j++;
 		}
@@ -66,10 +66,10 @@ void	my_sleep(uint64_t time)
 */
 uint64_t	time_stamp(void)
 {
-	struct timeval	currentTime;
+	struct timeval	current_time;
 
-	gettimeofday(&currentTime, NULL);
-	return ((currentTime.tv_sec * 1000) + (currentTime.tv_usec / 1000));
+	gettimeofday(&current_time, NULL);
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
 /**

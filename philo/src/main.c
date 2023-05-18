@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:20:35 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/17 07:44:18 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:50:24 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,13 @@ void	stamp_last_meal(void)
 */
 int	main(int ac, char **av)
 {
-	if (ac < 5 || check_av(av) == 1)
+	if (check_av(av, ac) == 1 || (ac != 5 && ac != 6))
 		return (0);
 	init_all(av);
 	if (call_struct()->nb_philo == 1)
 	{
 		print_action(1, 0, PHILO_DEAD);
+		destroy_mutex();
 		return (0);
 	}
 	launcher();

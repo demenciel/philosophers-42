@@ -1,4 +1,1 @@
-Rendu a figure les data races.
-Probleme que meme si le philo est dead ou done eating continue a print 
-parce qu'aussi non il y a des data races avec les conditions que je met.
-
+Checker la mort reste dans une boucle infini

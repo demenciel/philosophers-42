@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/17 07:40:40 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:40:22 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ typedef struct s_mutex
 	pthread_mutex_t	change_state;
 	pthread_mutex_t	last_meal;
 	pthread_mutex_t	print;
-	pthread_mutex_t	eat;
-	pthread_mutex_t	check_death;
 	pthread_mutex_t	check_full;
 }					t_mutex;
 
@@ -69,7 +67,7 @@ void				stamp_last_meal(void);
 
 // UTILS
 void				my_sleep(uint64_t time);
-int					check_av(char **av);
+int					check_av(char **av, int ac);
 int					ft_atoi(char *s);
 uint64_t			time_stamp(void);
 int					print_action(int philo_id, uint64_t stamp, char *action);
@@ -84,8 +82,11 @@ void				init_args(char **av);
 void				launcher(void);
 void				wait_thread(void);
 void				*routine(void *param);
+
+// CHECKERS
 int					check_death(void);
 int					check_full(void);
+int					is_full(t_data *data, int nb_eat);
 
 // ACTIONS
 void				philo_fork(t_philo *philo);
