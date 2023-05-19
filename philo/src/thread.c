@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/18 17:25:45 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:16:28 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	*routine(void *param)
 	full = data->full;
 	dead = data->dead;
 	pthread_mutex_unlock(&data->mutex.check_full);
-	while (!dead || !full)
+	while (!full)
 	{
+		if (check_full() == 1)
+			return (NULL);
 		if (check_death() == 1)
 			return (NULL);
 		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
-		if (check_full() == 1)
-			return (NULL);
 		philo_fork(philo);
 		if (!dead)
 			philo_sleeping(philo);
