@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/19 13:44:47 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:55:24 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	*routine(void *param)
 
 	philo = (t_philo *)param;
 	data = call_struct();
-	if (philo->philo_id % 2 == 0)
-		usleep(data->time_to_eat * 500);
 	while (1)
 	{
 		pthread_mutex_lock(&data->mutex.change_state);
@@ -71,12 +69,12 @@ void	launcher(void)
 	i = 0;
 	data = call_struct();
 	data->start_time = time_stamp();
+	pthread_mutex_lock(&data->mutex.last_meal);
+	stamp_last_meal();
+	pthread_mutex_unlock(&data->mutex.last_meal);
 	while (i < data->nb_philo)
 	{
 		philo = &data->philo[i];
-		pthread_mutex_lock(&data->mutex.last_meal);
-		stamp_last_meal();
-		pthread_mutex_unlock(&data->mutex.last_meal);
 		pthread_create(&philo->thread_id, NULL, routine, philo);
 		i++;
 	}
