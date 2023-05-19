@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/18 15:25:59 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:18:15 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	init_all(char **av)
 	init_args(av);
 	init_philo();
 	if (init_mutex() != 0)
+		return (1);
+	if (check_av_values() != 0)
 		return (1);
 	return (0);
 }
@@ -31,9 +33,13 @@ void	init_args(char **av)
 	data->time_to_eat = ft_atoi(av[3]);
 	data->time_to_sleep = ft_atoi(av[4]);
 	if (av[5])
+	{
 		data->must_eat = ft_atoi(av[5]);
+		data->must_eat *= data->nb_philo;
+	}
 	else
 		data->must_eat = 0;
+	data->total_eaten = 0;
 	data->dead = false;
 	data->full = false;
 	data->last_meal_stamped = false;
@@ -73,6 +79,7 @@ int	init_mutex(void)
 	pthread_mutex_init(&data->mutex.last_meal, NULL);
 	pthread_mutex_init(&data->mutex.change_state, NULL);
 	pthread_mutex_init(&data->mutex.check_full, NULL);
+	pthread_mutex_init(&data->mutex.nb_eat_mutex, NULL);
 	return (0);
 }
 
@@ -92,4 +99,5 @@ void	destroy_mutex(void)
 	pthread_mutex_destroy(&data->mutex.print);
 	pthread_mutex_destroy(&data->mutex.last_meal);
 	pthread_mutex_destroy(&data->mutex.change_state);
+	pthread_mutex_destroy(&data->mutex.nb_eat_mutex);
 }

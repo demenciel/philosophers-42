@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/18 15:40:22 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:17:08 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_mutex
 	pthread_mutex_t	last_meal;
 	pthread_mutex_t	print;
 	pthread_mutex_t	check_full;
+	pthread_mutex_t	nb_eat_mutex;
 }					t_mutex;
 
 typedef struct s_data
@@ -57,6 +58,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
+	int				total_eaten;
 	uint64_t		start_time;
 }					t_data;
 
@@ -64,6 +66,7 @@ typedef struct s_data
 t_data				*call_struct(void);
 void				destroy_mutex(void);
 void				stamp_last_meal(void);
+int					check_av_values(void);
 
 // UTILS
 void				my_sleep(uint64_t time);

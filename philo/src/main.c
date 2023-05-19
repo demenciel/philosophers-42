@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:20:35 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/18 16:50:24 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 12:30:10 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,22 @@ t_data	*call_struct(void)
 	static t_data	data;
 
 	return (&data);
+}
+
+int	check_av_values(void)
+{
+	t_data *data;
+
+	data = call_struct();
+	if (data->time_to_die < 60)
+		return (1);
+	if (data->time_to_eat < 60)
+		return (1);
+	if (data->time_to_sleep < 60)
+		return (1);
+	if (data->nb_philo > 200)
+		return (1);
+	return (0);
 }
 
 /**
@@ -49,9 +65,10 @@ void	stamp_last_meal(void)
 */
 int	main(int ac, char **av)
 {
-	if (check_av(av, ac) == 1 || (ac != 5 && ac != 6))
+	if (check_av(av, ac) != 0 || (ac != 5 && ac != 6))
 		return (0);
-	init_all(av);
+	if (init_all(av) != 0)
+		return (0);
 	if (call_struct()->nb_philo == 1)
 	{
 		print_action(1, 0, PHILO_DEAD);

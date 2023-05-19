@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:27:41 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/18 16:47:43 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:25:15 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_atoi(char *s)
 */
 int	check_av(char **av, int ac)
 {
-	int j;
-	int i;
+	int	j;
+	int	i;
 
 	i = 1;
 	while (i < ac)
