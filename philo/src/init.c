@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/19 13:18:15 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:36:20 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	init_philo(void)
 	while (i < data->nb_philo)
 	{
 		philo = &data->philo[i];
-		philo->nb_eat = 0;
 		philo->philo_id = (i + 1);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:38:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/19 13:19:17 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/19 13:38:24 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@ int	check_full(void)
 	}
 	return (0);
 }
-
-/**
- * Extension of check_full function
- * Checks if the number of times the philo as eaten is equal to must_eat if yes,
-	returns 1 to exit function
-*/
-// int	is_full(t_data *data, int nb_eat)
-// {
-// 	return (0);
-// }
 
 /**
  * For each philo,
