@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:27:41 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/19 13:25:15 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/22 08:03:52 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int	check_av(char **av, int ac)
 	return (0);
 }
 
+/**
+ * Custom sleep function
+*/
 void	my_sleep(uint64_t time)
 {
 	uint64_t	goal;

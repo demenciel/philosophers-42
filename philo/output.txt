@@ -1,261 +1,105 @@
-0 ms : Philo 1 has taken a fork
-0 ms : Philo 1 has taken a fork
 0 ms : Philo 1 is eating
-2 ms : Philo 3 has taken a fork
-2 ms : Philo 3 has taken a fork
-2 ms : Philo 3 is eating
+0 ms : Philo 3 is eating
+0 ms : Philo 4 is eating
+0 ms : Philo 2 is eating
+200 ms : Philo 3 is sleeping
 200 ms : Philo 1 is sleeping
-200 ms : Philo 4 has taken a fork
-200 ms : Philo 2 has taken a fork
-202 ms : Philo 3 is sleeping
-202 ms : Philo 4 has taken a fork
-202 ms : Philo 4 is eating
-202 ms : Philo 2 has taken a fork
-202 ms : Philo 2 is eating
+200 ms : Philo 4 is sleeping
+200 ms : Philo 5 is eating
+200 ms : Philo 2 is sleeping
 400 ms : Philo 1 is thinking
-402 ms : Philo 3 is thinking
-402 ms : Philo 2 is sleeping
-402 ms : Philo 3 has taken a fork
-402 ms : Philo 4 is sleeping
-402 ms : Philo 3 has taken a fork
-402 ms : Philo 3 is eating
-402 ms : Philo 1 has taken a fork
-402 ms : Philo 1 has taken a fork
-402 ms : Philo 1 is eating
-602 ms : Philo 4 is thinking
-602 ms : Philo 1 is sleeping
-602 ms : Philo 2 is thinking
-602 ms : Philo 4 has taken a fork
-602 ms : Philo 2 has taken a fork
-602 ms : Philo 2 has taken a fork
-602 ms : Philo 4 has taken a fork
-602 ms : Philo 3 is sleeping
-602 ms : Philo 4 is eating
-602 ms : Philo 2 is eating
-802 ms : Philo 4 is sleeping
-802 ms : Philo 3 is thinking
-802 ms : Philo 2 is sleeping
-802 ms : Philo 1 is thinking
-802 ms : Philo 3 has taken a fork
-802 ms : Philo 1 has taken a fork
-802 ms : Philo 1 has taken a fork
-802 ms : Philo 1 is eating
-802 ms : Philo 3 has taken a fork
-802 ms : Philo 3 is eating
-1002 ms : Philo 4 is thinking
-1002 ms : Philo 2 is thinking
-1002 ms : Philo 3 is sleeping
-1002 ms : Philo 1 is sleeping
-1002 ms : Philo 4 has taken a fork
-1002 ms : Philo 4 has taken a fork
-1002 ms : Philo 4 is eating
-1002 ms : Philo 2 has taken a fork
-1002 ms : Philo 2 has taken a fork
-1002 ms : Philo 2 is eating
-1202 ms : Philo 2 is sleeping
-1202 ms : Philo 1 is thinking
-1202 ms : Philo 3 is thinking
-1202 ms : Philo 4 is sleeping
-1202 ms : Philo 1 has taken a fork
-1202 ms : Philo 1 has taken a fork
-1202 ms : Philo 1 is eating
-1202 ms : Philo 3 has taken a fork
-1202 ms : Philo 3 has taken a fork
-1202 ms : Philo 3 is eating
-1402 ms : Philo 2 is thinking
-1402 ms : Philo 4 is thinking
-1402 ms : Philo 3 is sleeping
-1402 ms : Philo 4 has taken a fork
-1402 ms : Philo 1 is sleeping
-1402 ms : Philo 4 has taken a fork
-1402 ms : Philo 4 is eating
-1402 ms : Philo 2 has taken a fork
-1402 ms : Philo 2 has taken a fork
-1402 ms : Philo 2 is eating
-1602 ms : Philo 3 is thinking
-1602 ms : Philo 1 is thinking
-1602 ms : Philo 2 is sleeping
-1602 ms : Philo 3 has taken a fork
-1602 ms : Philo 1 has taken a fork
-1602 ms : Philo 4 is sleeping
-1602 ms : Philo 1 has taken a fork
-1602 ms : Philo 1 is eating
-1602 ms : Philo 3 has taken a fork
-1602 ms : Philo 3 is eating
-1802 ms : Philo 4 is thinking
-1802 ms : Philo 1 is sleeping
-1802 ms : Philo 3 is sleeping
-1802 ms : Philo 4 has taken a fork
-1802 ms : Philo 4 has taken a fork
-1802 ms : Philo 4 is eating
-1802 ms : Philo 2 is thinking
-1802 ms : Philo 2 has taken a fork
-1802 ms : Philo 2 has taken a fork
-1802 ms : Philo 2 is eating
-2002 ms : Philo 3 is thinking
-2002 ms : Philo 1 is thinking
-2002 ms : Philo 2 is sleeping
-2002 ms : Philo 4 is sleeping
-2002 ms : Philo 3 has taken a fork
-2002 ms : Philo 3 has taken a fork
-2002 ms : Philo 1 has taken a fork
-2002 ms : Philo 1 has taken a fork
-2002 ms : Philo 1 is eating
-2002 ms : Philo 3 is eating
-2202 ms : Philo 3 is sleeping
-2202 ms : Philo 1 is sleeping
-2202 ms : Philo 4 is thinking
-2202 ms : Philo 2 is thinking
-2202 ms : Philo 4 has taken a fork
-2202 ms : Philo 4 has taken a fork
-2202 ms : Philo 4 is eating
-2202 ms : Philo 2 has taken a fork
-2202 ms : Philo 2 has taken a fork
-2202 ms : Philo 2 is eating
-2402 ms : Philo 1 is thinking
-2402 ms : Philo 2 is sleeping
-2402 ms : Philo 3 is thinking
-2402 ms : Philo 4 is sleeping
-2402 ms : Philo 1 has taken a fork
-2402 ms : Philo 1 has taken a fork
-2402 ms : Philo 1 is eating
-2402 ms : Philo 3 has taken a fork
-2402 ms : Philo 3 has taken a fork
-2402 ms : Philo 3 is eating
-2602 ms : Philo 3 is sleeping
-2602 ms : Philo 2 is thinking
-2602 ms : Philo 4 is thinking
-2602 ms : Philo 1 is sleeping
-2602 ms : Philo 2 has taken a fork
-2602 ms : Philo 2 has taken a fork
-2602 ms : Philo 2 is eating
-2602 ms : Philo 4 has taken a fork
-2602 ms : Philo 4 has taken a fork
-2602 ms : Philo 4 is eating
-2802 ms : Philo 2 is sleeping
-2802 ms : Philo 3 is thinking
-2802 ms : Philo 4 is sleeping
-2802 ms : Philo 1 is thinking
-2802 ms : Philo 3 has taken a fork
-2802 ms : Philo 3 has taken a fork
-2802 ms : Philo 3 is eating
-2802 ms : Philo 1 has taken a fork
-2802 ms : Philo 1 has taken a fork
-2802 ms : Philo 1 is eating
-3002 ms : Philo 2 is thinking
-3002 ms : Philo 4 is thinking
-3002 ms : Philo 1 is sleeping
-3002 ms : Philo 2 has taken a fork
-3002 ms : Philo 4 has taken a fork
-3002 ms : Philo 3 is sleeping
-3002 ms : Philo 2 has taken a fork
-3002 ms : Philo 2 is eating
-3002 ms : Philo 4 has taken a fork
-3002 ms : Philo 4 is eating
-3202 ms : Philo 3 is thinking
-3202 ms : Philo 2 is sleeping
-3202 ms : Philo 1 is thinking
-3202 ms : Philo 4 is sleeping
-3202 ms : Philo 3 has taken a fork
-3202 ms : Philo 3 has taken a fork
-3202 ms : Philo 3 is eating
-3202 ms : Philo 1 has taken a fork
-3202 ms : Philo 1 has taken a fork
-3202 ms : Philo 1 is eating
-3402 ms : Philo 4 is thinking
-3402 ms : Philo 2 is thinking
-3402 ms : Philo 3 is sleeping
-3402 ms : Philo 1 is sleeping
-3402 ms : Philo 4 has taken a fork
-3402 ms : Philo 4 has taken a fork
-3402 ms : Philo 4 is eating
-3402 ms : Philo 2 has taken a fork
-3402 ms : Philo 2 has taken a fork
-3402 ms : Philo 2 is eating
-3602 ms : Philo 2 is sleeping
-3602 ms : Philo 1 is thinking
-3602 ms : Philo 4 is sleeping
-3602 ms : Philo 3 is thinking
-3602 ms : Philo 3 has taken a fork
-3602 ms : Philo 3 has taken a fork
-3602 ms : Philo 3 is eating
-3602 ms : Philo 1 has taken a fork
-3602 ms : Philo 1 has taken a fork
-3602 ms : Philo 1 is eating
-3802 ms : Philo 3 is sleeping
-3802 ms : Philo 4 is thinking
-3802 ms : Philo 2 is thinking
-3802 ms : Philo 1 is sleeping
-3802 ms : Philo 4 has taken a fork
-3802 ms : Philo 4 has taken a fork
-3802 ms : Philo 4 is eating
-3802 ms : Philo 2 has taken a fork
-3802 ms : Philo 2 has taken a fork
-3802 ms : Philo 2 is eating
-4002 ms : Philo 3 is thinking
-4002 ms : Philo 4 is sleeping
-4002 ms : Philo 1 is thinking
-4002 ms : Philo 2 is sleeping
-4002 ms : Philo 3 has taken a fork
-4002 ms : Philo 3 has taken a fork
-4002 ms : Philo 3 is eating
-4002 ms : Philo 1 has taken a fork
-4002 ms : Philo 1 has taken a fork
-4002 ms : Philo 1 is eating
-4202 ms : Philo 1 is sleeping
-4202 ms : Philo 4 is thinking
-4202 ms : Philo 2 is thinking
-4202 ms : Philo 4 has taken a fork
-4202 ms : Philo 2 has taken a fork
-4202 ms : Philo 3 is sleeping
-4202 ms : Philo 2 has taken a fork
-4202 ms : Philo 2 is eating
-4202 ms : Philo 4 has taken a fork
-4202 ms : Philo 4 is eating
-4402 ms : Philo 1 is thinking
-4402 ms : Philo 4 is sleeping
-4402 ms : Philo 2 is sleeping
-4402 ms : Philo 3 is thinking
-4402 ms : Philo 1 has taken a fork
-4402 ms : Philo 1 has taken a fork
-4402 ms : Philo 1 is eating
-4402 ms : Philo 3 has taken a fork
-4402 ms : Philo 3 has taken a fork
-4402 ms : Philo 3 is eating
-4602 ms : Philo 1 is sleeping
-4602 ms : Philo 3 is sleeping
-4602 ms : Philo 2 is thinking
-4602 ms : Philo 4 is thinking
-4602 ms : Philo 2 has taken a fork
-4602 ms : Philo 2 has taken a fork
-4602 ms : Philo 2 is eating
-4602 ms : Philo 4 has taken a fork
-4602 ms : Philo 4 has taken a fork
-4602 ms : Philo 4 is eating
-4802 ms : Philo 3 is thinking
-4802 ms : Philo 2 is sleeping
-4802 ms : Philo 1 is thinking
-4802 ms : Philo 4 is sleeping
-4802 ms : Philo 3 has taken a fork
-4802 ms : Philo 3 has taken a fork
-4802 ms : Philo 3 is eating
-4802 ms : Philo 1 has taken a fork
-4802 ms : Philo 1 has taken a fork
-4802 ms : Philo 1 is eating
-5002 ms : Philo 2 is thinking
-5002 ms : Philo 1 is sleeping
-5002 ms : Philo 2 has taken a fork
-5002 ms : Philo 2 has taken a fork
-5002 ms : Philo 2 is eating
-5002 ms : Philo 3 is sleeping
-5002 ms : Philo 4 is thinking
-5002 ms : Philo 4 has taken a fork
-5002 ms : Philo 4 has taken a fork
-5002 ms : Philo 4 is eating
-5202 ms : Philo 1 is thinking
-5202 ms : Philo 3 is thinking
-5202 ms : Philo 4 is sleeping
-5202 ms : Philo 2 is sleeping
-5202 ms : Philo 1 has taken a fork
-5202 ms : Philo 1 has taken a fork
-5202 ms : Philo 1 is e
+400 ms : Philo 4 is thinking
+400 ms : Philo 4 is eating
+400 ms : Philo 2 is thinking
+400 ms : Philo 2 is eating
+400 ms : Philo 5 is sleeping
+400 ms : Philo 1 is eating
+400 ms : Philo 3 is thinking
+400 ms : Philo 3 is eating
+600 ms : Philo 4 is sleeping
+600 ms : Philo 2 is sleeping
+600 ms : Philo 3 is sleeping
+600 ms : Philo 1 is sleeping
+600 ms : Philo 5 is thinking
+600 ms : Philo 5 is eating
+800 ms : Philo 1 is thinking
+800 ms : Philo 1 is eating
+800 ms : Philo 4 is thinking
+800 ms : Philo 2 is thinking
+800 ms : Philo 5 is sleeping
+800 ms : Philo 2 is eating
+800 ms : Philo 3 is thinking
+800 ms : Philo 3 is eating
+800 ms : Philo 4 is eating
+1000 ms : Philo 5 is thinking
+1000 ms : Philo 3 is sleeping
+1000 ms : Philo 5 is eating
+1000 ms : Philo 2 is sleeping
+1000 ms : Philo 1 is sleeping
+1000 ms : Philo 4 is sleeping
+1200 ms : Philo 3 is thinking
+1200 ms : Philo 3 is eating
+1200 ms : Philo 5 is sleeping
+1200 ms : Philo 2 is thinking
+1200 ms : Philo 2 is eating
+1200 ms : Philo 1 is thinking
+1200 ms : Philo 1 is eating
+1200 ms : Philo 4 is thinking
+1200 ms : Philo 4 is eating
+1400 ms : Philo 3 is sleeping
+1400 ms : Philo 1 is sleeping
+1400 ms : Philo 4 is sleeping
+1400 ms : Philo 2 is sleeping
+1400 ms : Philo 5 is thinking
+1400 ms : Philo 5 is eating
+1600 ms : Philo 5 is sleeping
+1600 ms : Philo 1 is thinking
+1600 ms : Philo 1 is eating
+1600 ms : Philo 3 is thinking
+1600 ms : Philo 3 is eating
+1600 ms : Philo 4 is thinking
+1600 ms : Philo 4 is eating
+1600 ms : Philo 2 is thinking
+1600 ms : Philo 2 is eating
+1800 ms : Philo 4 is sleeping
+1800 ms : Philo 2 is sleeping
+1800 ms : Philo 3 is sleeping
+1800 ms : Philo 1 is sleeping
+1800 ms : Philo 5 is thinking
+1800 ms : Philo 5 is eating
+2000 ms : Philo 2 is thinking
+2000 ms : Philo 3 is thinking
+2000 ms : Philo 2 is eating
+2000 ms : Philo 1 is thinking
+2000 ms : Philo 5 is sleeping
+2000 ms : Philo 4 is thinking
+2000 ms : Philo 4 is eating
+2000 ms : Philo 1 is eating
+2000 ms : Philo 3 is eating
+2200 ms : Philo 3 is sleeping
+2200 ms : Philo 4 is sleeping
+2200 ms : Philo 2 is sleeping
+2200 ms : Philo 5 is thinking
+2200 ms : Philo 1 is sleeping
+2200 ms : Philo 5 is eating
+2400 ms : Philo 2 is thinking
+2400 ms : Philo 5 is sleeping
+2400 ms : Philo 2 is eating
+2400 ms : Philo 1 is thinking
+2400 ms : Philo 1 is eating
+2400 ms : Philo 4 is thinking
+2400 ms : Philo 3 is thinking
+2400 ms : Philo 3 is eating
+2400 ms : Philo 4 is eating
+2600 ms : Philo 3 is sleeping
+2600 ms : Philo 1 is sleeping
+2600 ms : Philo 2 is sleeping
+2600 ms : Philo 5 is thinking
+2600 ms : Philo 5 is eating
+2600 ms : Philo 4 is sleeping
+2800 ms : Philo 1 is thinking
+2800 ms : Philo 4 is thinking
+2800 ms : Philo 5 is sleeping
+2800 ms : Philo 2 is thinking
+2800 ms : Philo 3 is thinking
+3000 ms : Philo 5 is thinking

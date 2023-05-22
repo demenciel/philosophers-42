@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/19 13:55:24 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/22 08:01:47 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@ void	*routine(void *param)
 {
 	t_philo	*philo;
 	t_data	*data;
-	bool	dead;
 
 	philo = (t_philo *)param;
 	data = call_struct();
 	while (1)
 	{
-		pthread_mutex_lock(&data->mutex.change_state);
-		dead = data->dead;
-		pthread_mutex_unlock(&data->mutex.change_state);
-		if (check_full() == 1 || dead)
+		if (check_full() == 1)
+			return (NULL);
+		if (check_death() == 1)
 			return (NULL);
 		philo_fork(philo);
 		philo_sleeping(philo);

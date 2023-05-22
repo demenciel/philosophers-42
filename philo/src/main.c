@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:20:35 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/19 12:30:10 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/22 08:03:33 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ t_data	*call_struct(void)
 	return (&data);
 }
 
+/**
+ * Checks that no av are under 60 ms
+*/
 int	check_av_values(void)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = call_struct();
 	if (data->time_to_die < 60)
