@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 07:57:39 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/22 08:00:28 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:37:43 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ void	philo_fork(t_philo *philo)
 		fork1 = &data->mutex.fork[(philo->philo_id) % data->nb_philo];
 		fork2 = &data->mutex.fork[philo->philo_id - 1];
 	}
-	pthread_mutex_lock(fork1);
-	if (check_death() == 1)
+	if (check_death() != 1)
 	{
+		pthread_mutex_lock(fork1);
 		print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
 		pthread_mutex_lock(fork2);
 		print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
 	}
+	else
+		return ;
 	philo_eating(philo);
 	pthread_mutex_unlock(fork1);
 	pthread_mutex_unlock(fork2);

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/22 08:01:47 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:37:56 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	*routine(void *param)
 
 	philo = (t_philo *)param;
 	data = call_struct();
+	if (philo->philo_id % 2 == 0)
+		my_sleep(data->time_to_eat / 2);
 	while (1)
 	{
 		if (check_full() == 1)
