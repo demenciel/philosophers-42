@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:38:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/23 12:49:52 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:12:29 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	check_full(void)
 		pthread_mutex_lock(&data->mutex.nb_eat_mutex);
 		nb_eat = data->total_eaten;
 		pthread_mutex_unlock(&data->mutex.nb_eat_mutex);
-		if (nb_eat == data->must_eat)
+		if (nb_eat >= data->must_eat)
 			return (1);
 	}
 	return (0);
