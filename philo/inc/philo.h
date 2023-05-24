@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 10:00:49 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:26:18 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ typedef struct s_mutex
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	change_state;
 	pthread_mutex_t	last_meal;
-	pthread_mutex_t	nb_eat;
 	pthread_mutex_t	print;
 }					t_mutex;
 
@@ -50,7 +49,6 @@ typedef struct s_data
 	t_mutex			mutex;
 	t_philo			philo[200];
 	bool			dead;
-	bool			dead_flag;
 	bool			last_meal_stamped;
 	int				nb_philo;
 	int				time_to_die;

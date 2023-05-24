@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 10:11:38 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:26:15 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*routine(void *void_philo)
 {
-	t_data *data;
-	t_philo *philo;
+	t_data	*data;
+	t_philo	*philo;
 
 	data = call_struct();
 	philo = (t_philo *)void_philo;
@@ -34,11 +34,11 @@ void	*routine(void *void_philo)
 	return (NULL);
 }
 
-void	wait_thread()
+void	wait_thread(void)
 {
-	int i;
-	t_data *data;
-	t_philo *philo;
+	int		i;
+	t_data	*data;
+	t_philo	*philo;
 
 	i = 0;
 	data = call_struct();
@@ -51,11 +51,11 @@ void	wait_thread()
 	}
 }
 
-void launcher()
+void	launcher(void)
 {
-	int i;
-	t_data *data;
-	t_philo *philo;
+	int		i;
+	t_data	*data;
+	t_philo	*philo;
 
 	i = 0;
 	data = call_struct();
@@ -63,12 +63,10 @@ void launcher()
 	stamp_last_meal();
 	while (i < data->nb_philo)
 	{
-        philo = &data->philo[i];
+		philo = &data->philo[i];
 		if (pthread_create(&philo->thread_id, NULL, routine, philo) == -1)
 			return ;
 		i++;
 	}
 	wait_thread();
-	if (check_full() == 1)
-		return ;
 }
