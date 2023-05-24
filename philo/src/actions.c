@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 07:57:39 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 10:00:42 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:03:13 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ int philo_eating(t_philo *philo)
     print_action(philo->philo_id, time_stamp(), PHILO_EATING);
     pthread_mutex_lock(&data->mutex.last_meal);
     philo->time_last_meal = time_stamp();
-    pthread_mutex_unlock(&data->mutex.last_meal);
-    pthread_mutex_lock(&data->mutex.nb_eat);
     data->total_eaten++;
-    pthread_mutex_unlock(&data->mutex.nb_eat);
+    pthread_mutex_unlock(&data->mutex.last_meal);
     my_sleep(data->time_to_eat);
     pthread_mutex_unlock(fork1);
     pthread_mutex_unlock(fork2);

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:27:41 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 09:39:49 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:02:51 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	print_action(int philo_id, uint64_t stamp, char *action)
 	data = call_struct();
 	pthread_mutex_lock(&data->mutex.print);
 	time_diff = stamp - data->start_time;
-	if (check_full() != 1 && check_death() != 1)
+	if (check_full() != 1)
 		printf("%lld ms Philo %d %s\n", time_diff, philo_id, action);
 	pthread_mutex_unlock(&data->mutex.print);
 	return (0);
