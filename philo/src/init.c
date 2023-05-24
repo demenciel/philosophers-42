@@ -6,12 +6,15 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:26:29 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:36:16 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+/**
+ * Initialize everything
+*/
 int	init_all(char **av)
 {
 	init_args(av);
@@ -23,6 +26,9 @@ int	init_all(char **av)
 	return (0);
 }
 
+/**
+ * Converts each av in a number and initialize the struct's parameters
+*/
 void	init_args(char **av)
 {
 	t_data	*data;
@@ -38,11 +44,14 @@ void	init_args(char **av)
 		data->must_eat *= data->nb_philo;
 	}
 	else
-		data->must_eat = 0;
+	data->must_eat = 0;
 	data->total_eaten = 0;
 	data->dead = false;
 }
 
+/**
+ * Initialize the parameters in philo struct 
+*/
 void	init_philo(void)
 {
 	int		i;
@@ -59,6 +68,9 @@ void	init_philo(void)
 	}
 }
 
+/**
+ * Initialize every mutexes needed
+*/
 int	init_mutex(void)
 {
 	int		i;
@@ -78,6 +90,9 @@ int	init_mutex(void)
 	return (0);
 }
 
+/**
+ * Destroys the mutexes
+*/
 void	destroy_mutex(void)
 {
 	int		i;

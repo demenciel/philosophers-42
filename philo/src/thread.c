@@ -6,12 +6,15 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:26:15 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:31:31 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+/**
+ * The main routine of the philos, eating, sleeping and thinking
+*/
 void	*routine(void *void_philo)
 {
 	t_data	*data;
@@ -34,6 +37,9 @@ void	*routine(void *void_philo)
 	return (NULL);
 }
 
+/**
+ * Waits until every thread is finished
+*/
 void	wait_thread(void)
 {
 	int		i;

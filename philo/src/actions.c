@@ -6,12 +6,16 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 07:57:39 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:26:31 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:33:20 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+/**
+ * Depending on the number of total philo,
+	Philo will take the appropriate fork on the left
+*/
 pthread_mutex_t	*take_fork1(t_philo *philo)
 {
 	t_data			*data;
@@ -30,6 +34,10 @@ pthread_mutex_t	*take_fork1(t_philo *philo)
 	return (fork1);
 }
 
+/**
+ * Depending on the number of total philo,
+	Philo will take the appropriate fork on the right
+*/
 pthread_mutex_t	*take_fork2(t_philo *philo)
 {
 	t_data			*data;
@@ -48,6 +56,9 @@ pthread_mutex_t	*take_fork2(t_philo *philo)
 	return (fork2);
 }
 
+/**
+ * After taking up the forks, begins eating and time stamps the meal
+*/
 int	philo_eating(t_philo *philo)
 {
 	t_data			*data;
@@ -68,6 +79,9 @@ int	philo_eating(t_philo *philo)
 	return (0);
 }
 
+/**
+ * Begins the actions of sleeping for time_to_sleep of time
+*/
 void	philo_sleeping(t_philo *philo)
 {
 	t_data	*data;

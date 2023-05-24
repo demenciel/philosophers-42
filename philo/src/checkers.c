@@ -6,12 +6,16 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:38:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:26:26 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:34:39 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
 
+/**
+ * By multiplying the number of philo and the number of times each must eat,
+	compares the result with total of times eating was executed
+*/
 int	check_full(void)
 {
 	t_data	*data;
@@ -29,6 +33,9 @@ int	check_full(void)
 	return (0);
 }
 
+/**
+ * Checks if the time of last meal is greater than the time_to_die
+*/
 int	check_death(void)
 {
 	int		time_check;
