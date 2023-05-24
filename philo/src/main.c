@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:20:35 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/22 08:03:33 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 09:57:55 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	stamp_last_meal(void)
 		while (i < data->nb_philo)
 		{
 			philo = &data->philo[i];
+			pthread_mutex_lock(&data->mutex.last_meal);
 			philo->time_last_meal = time_stamp();
+			pthread_mutex_unlock(&data->mutex.last_meal);
 			i++;
 		}
 		data->last_meal_stamped = true;

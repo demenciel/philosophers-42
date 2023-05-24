@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/23 12:31:21 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:00:49 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,8 @@ typedef struct s_mutex
 	pthread_mutex_t	fork[200];
 	pthread_mutex_t	change_state;
 	pthread_mutex_t	last_meal;
+	pthread_mutex_t	nb_eat;
 	pthread_mutex_t	print;
-	pthread_mutex_t	check_full;
-	pthread_mutex_t	nb_eat_mutex;
 }					t_mutex;
 
 typedef struct s_data
@@ -51,7 +50,7 @@ typedef struct s_data
 	t_mutex			mutex;
 	t_philo			philo[200];
 	bool			dead;
-	bool			full;
+	bool			dead_flag;
 	bool			last_meal_stamped;
 	int				nb_philo;
 	int				time_to_die;
@@ -69,31 +68,32 @@ void				stamp_last_meal(void);
 int					check_av_values(void);
 
 // UTILS
+int					print_action(int philo_id, uint64_t stamp, char *action);
+uint64_t			time_stamp(void);
 void				my_sleep(uint64_t time);
 int					check_av(char **av, int ac);
 int					ft_atoi(char *s);
-uint64_t			time_stamp(void);
-int					print_action(int philo_id, uint64_t stamp, char *action);
 
 // INIT
 int					init_all(char **av);
-int					init_mutex(void);
-void				init_philo(void);
 void				init_args(char **av);
+void				init_philo(void);
+int					init_mutex(void);
+void				destroy_mutex(void);
 
 // THREADS
 void				launcher(void);
+void				*routine(void *void_philo);
 void				wait_thread(void);
-void				*routine(void *param);
-
-// CHECKERS
-int					check_death(void);
-int					check_full(void);
-int					is_full(t_data *data, int nb_eat);
 
 // ACTIONS
-void				philo_fork(t_philo *philo);
+int					philo_eating(t_philo *philo);
 void				philo_sleeping(t_philo *philo);
-void				philo_eating(t_philo *philo);
+pthread_mutex_t		*take_fork1(t_philo *philo);
+pthread_mutex_t		*take_fork2(t_philo *philo);
 
+// CHECKERS
+int					check_full(void);
+int					check_death(void);
+void				lock_dead(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/23 12:46:24 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:01:00 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	init_args(char **av)
 		data->must_eat = 0;
 	data->total_eaten = 0;
 	data->dead = false;
-	data->full = false;
-	data->last_meal_stamped = false;
 }
 
 void	init_philo(void)
@@ -77,8 +75,7 @@ int	init_mutex(void)
 	pthread_mutex_init(&data->mutex.print, NULL);
 	pthread_mutex_init(&data->mutex.last_meal, NULL);
 	pthread_mutex_init(&data->mutex.change_state, NULL);
-	pthread_mutex_init(&data->mutex.check_full, NULL);
-	pthread_mutex_init(&data->mutex.nb_eat_mutex, NULL);
+	pthread_mutex_init(&data->mutex.nb_eat, NULL);
 	return (0);
 }
 
@@ -94,9 +91,7 @@ void	destroy_mutex(void)
 		pthread_mutex_destroy(&data->mutex.fork[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&data->mutex.check_full);
 	pthread_mutex_destroy(&data->mutex.print);
 	pthread_mutex_destroy(&data->mutex.last_meal);
 	pthread_mutex_destroy(&data->mutex.change_state);
-	pthread_mutex_destroy(&data->mutex.nb_eat_mutex);
 }
