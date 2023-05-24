@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 07:57:39 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:33:20 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:47:39 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ pthread_mutex_t	*take_fork1(t_philo *philo)
 		fork1 = &data->mutex.fork[philo->philo_id - 1];
 	else
 		fork1 = &data->mutex.fork[(philo->philo_id) % data->nb_philo];
+	pthread_mutex_lock(fork1);
 	if (check_death() != 1)
-	{
-		pthread_mutex_lock(fork1);
 		print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
-	}
+	else
+		pthread_mutex_unlock(fork1);
+
 	return (fork1);
 }
 
@@ -48,11 +49,11 @@ pthread_mutex_t	*take_fork2(t_philo *philo)
 		fork2 = &data->mutex.fork[(philo->philo_id) % data->nb_philo];
 	else
 		fork2 = &data->mutex.fork[philo->philo_id - 1];
+	pthread_mutex_lock(fork2);
 	if (check_death() != 1)
-	{
-		pthread_mutex_lock(fork2);
 		print_action(philo->philo_id, time_stamp(), FORK_TAKEN);
-	}
+	else
+		pthread_mutex_unlock(fork2);
 	return (fork2);
 }
 

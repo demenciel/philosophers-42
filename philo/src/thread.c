@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:31:31 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/24 13:45:19 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	*routine(void *void_philo)
 		my_sleep(data->time_to_eat);
 	while (1)
 	{
+		philo_eating(philo);
+		philo_sleeping(philo);
+		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
 		if (check_full() == 1)
 			break ;
 		if (check_death() == 1)
 			break ;
-		philo_eating(philo);
-		philo_sleeping(philo);
-		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
 	}
 	return (NULL);
 }
