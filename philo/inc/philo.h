@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:44:17 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:28:52 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@
 # define PHILO_EATING "is eating"
 # define PHILO_SLEEPING "is sleeping"
 # define PHILO_THINKING "is thinking"
-# define PHILO_DEAD "DEAD"
+# define PHILO_DEAD "died"
 
 typedef struct s_philo
 {
 	pthread_t		thread_id;
-	pthread_t		death_thread;
 	int				philo_id;
 	int				nb_eat;
+	int				l_fork;
+	int				r_fork;
 	uint64_t		time_last_meal;
 
 }					t_philo;
@@ -75,7 +76,8 @@ int					ft_atoi(char *s);
 // INIT
 int					init_all(char **av);
 void				init_args(char **av);
-void				init_philo(void);
+void				create_philos(void);
+void				fill_philo_struct(t_data *data, int i, int j);
 int					init_mutex(void);
 void				destroy_mutex(void);
 
@@ -86,12 +88,9 @@ void				wait_thread(void);
 
 // ACTIONS
 int					philo_eating(t_philo *philo);
-void				philo_sleeping(t_philo *philo);
-pthread_mutex_t		*take_fork1(t_philo *philo);
-pthread_mutex_t		*take_fork2(t_philo *philo);
+void				unlock_forks(t_data *data, t_philo *philo);
 
 // CHECKERS
 int					check_full(void);
 int					check_death(void);
-void				lock_dead(void);
 #endif

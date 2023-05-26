@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:38:14 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:15:08 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int	init_all(char **av)
 {
 	init_args(av);
-	init_philo();
+	create_philos();
 	if (init_mutex() != 0)
 		return (1);
 	if (check_av_values() != 0)
@@ -52,20 +52,31 @@ void	init_args(char **av)
 /**
  * Initialize the parameters in philo struct 
 */
-void	init_philo(void)
+void	create_philos()
 {
-	int		i;
-	t_philo	*philo;
-	t_data	*data;
+	int	i;
+	int	j;
+	t_data *data;
 
 	i = 0;
+	j = 1;
 	data = call_struct();
-	while (i < data->nb_philo)
+	while (j < data->nb_philo)
 	{
-		philo = &data->philo[i];
-		philo->philo_id = (i + 1);
+		fill_philo_struct(data, i, j);
 		i++;
+		j++;
 	}
+	j = 0;
+	fill_philo_struct(data, i, j);
+}
+
+void	fill_philo_struct(t_data *data, int i, int j)
+{
+	data->philo[i].philo_id = i + 1;
+	data->philo[i].l_fork = i;
+	data->philo[i].r_fork = j;
+	data->philo[i].time_last_meal = time_stamp();
 }
 
 /**

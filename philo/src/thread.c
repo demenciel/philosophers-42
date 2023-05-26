@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:45:19 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:57:24 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	*routine(void *void_philo)
 		my_sleep(data->time_to_eat);
 	while (1)
 	{
-		philo_eating(philo);
-		philo_sleeping(philo);
-		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
 		if (check_full() == 1)
 			break ;
-		if (check_death() == 1)
+		if (check_death() == 1 || philo_eating(philo) == 1)
 			break ;
+		my_sleep(data->time_to_sleep);
+		print_action(philo->philo_id, time_stamp(), PHILO_SLEEPING);
+		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
 	}
 	return (NULL);
 }
@@ -66,7 +66,7 @@ void	launcher(void)
 	i = 0;
 	data = call_struct();
 	data->start_time = time_stamp();
-	stamp_last_meal();
+	// stamp_last_meal();
 	while (i < data->nb_philo)
 	{
 		philo = &data->philo[i];
