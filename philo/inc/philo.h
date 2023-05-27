@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/26 15:28:52 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:04:34 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ typedef struct s_data
 // MAIN
 t_data				*call_struct(void);
 void				destroy_mutex(void);
-void				stamp_last_meal(void);
 int					check_av_values(void);
+void				destroy_mutex(void);
 
 // UTILS
 int					print_action(int philo_id, uint64_t stamp, char *action);
@@ -79,7 +79,6 @@ void				init_args(char **av);
 void				create_philos(void);
 void				fill_philo_struct(t_data *data, int i, int j);
 int					init_mutex(void);
-void				destroy_mutex(void);
 
 // THREADS
 void				launcher(void);
@@ -88,7 +87,6 @@ void				wait_thread(void);
 
 // ACTIONS
 int					philo_eating(t_philo *philo);
-void				unlock_forks(t_data *data, t_philo *philo);
 
 // CHECKERS
 int					check_full(void);

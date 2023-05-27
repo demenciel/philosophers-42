@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/26 15:57:24 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:03:52 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	launcher(void)
 	i = 0;
 	data = call_struct();
 	data->start_time = time_stamp();
-	// stamp_last_meal();
 	while (i < data->nb_philo)
 	{
 		philo = &data->philo[i];

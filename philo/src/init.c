@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/26 15:15:08 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:05:15 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ void	init_args(char **av)
 		data->must_eat *= data->nb_philo;
 	}
 	else
-	data->must_eat = 0;
+		data->must_eat = 0;
 	data->total_eaten = 0;
 	data->dead = false;
 }
 
 /**
- * Initialize the parameters in philo struct 
+ * Using loop, initialize the parameters in each philo struct 
 */
-void	create_philos()
+void	create_philos(void)
 {
-	int	i;
-	int	j;
-	t_data *data;
+	int		i;
+	int		j;
+	t_data	*data;
 
 	i = 0;
 	j = 1;
@@ -99,24 +99,4 @@ int	init_mutex(void)
 	pthread_mutex_init(&data->mutex.last_meal, NULL);
 	pthread_mutex_init(&data->mutex.change_state, NULL);
 	return (0);
-}
-
-/**
- * Destroys the mutexes
-*/
-void	destroy_mutex(void)
-{
-	int		i;
-	t_data	*data;
-
-	i = 0;
-	data = call_struct();
-	while (i < data->nb_philo)
-	{
-		pthread_mutex_destroy(&data->mutex.fork[i]);
-		i++;
-	}
-	pthread_mutex_destroy(&data->mutex.print);
-	pthread_mutex_destroy(&data->mutex.last_meal);
-	pthread_mutex_destroy(&data->mutex.change_state);
 }

@@ -6,12 +6,12 @@
 #    By: acouture <acouture@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/17 15:51:56 by acouture          #+#    #+#              #
-#    Updated: 2023/05/26 15:38:29 by acouture         ###   ########.fr        #
+#    Updated: 2023/05/27 08:56:04 by acouture         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= philo
-CFLAGS  := -pthread -Wextra -Wall -Werror
+CFLAGS  := -pthread -Wextra -Wall -Werror 
 # LDFLAGS := -fsanitize=thread
 
 SRC_PATH = src/

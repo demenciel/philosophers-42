@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:20:35 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/24 13:26:21 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:04:04 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,26 @@ t_data	*call_struct(void)
 	static t_data	data;
 
 	return (&data);
+}
+
+/**
+ * Destroys the mutexes
+*/
+void	destroy_mutex(void)
+{
+	int		i;
+	t_data	*data;
+
+	i = 0;
+	data = call_struct();
+	while (i < data->nb_philo)
+	{
+		pthread_mutex_destroy(&data->mutex.fork[i]);
+		i++;
+	}
+	pthread_mutex_destroy(&data->mutex.print);
+	pthread_mutex_destroy(&data->mutex.last_meal);
+	pthread_mutex_destroy(&data->mutex.change_state);
 }
 
 /**
@@ -36,33 +56,6 @@ int	check_av_values(void)
 	if (data->nb_philo > 200)
 		return (1);
 	return (0);
-}
-
-/**
- * To avoid data races,
-	initalize by time stamping the last meal of each philo 
-    before starting the threads
-*/
-void	stamp_last_meal(void)
-{
-	int		i;
-	t_data	*data;
-	t_philo	*philo;
-
-	i = 0;
-	data = call_struct();
-	if (data->last_meal_stamped == false)
-	{
-		while (i < data->nb_philo)
-		{
-			philo = &data->philo[i];
-			pthread_mutex_lock(&data->mutex.last_meal);
-			philo->time_last_meal = time_stamp();
-			pthread_mutex_unlock(&data->mutex.last_meal);
-			i++;
-		}
-		data->last_meal_stamped = true;
-	}
 }
 
 /**

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:38:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/26 13:34:33 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:03:30 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	check_death(void)
 	t_philo	*philo;
 	t_data	*data;
 
-	i = 0;
+	i = -1;
 	data = call_struct();
-	while (i < data->nb_philo)
+	while (++i < data->nb_philo)
 	{
 		philo = &data->philo[i];
 		pthread_mutex_lock(&data->mutex.last_meal);
@@ -53,13 +53,14 @@ int	check_death(void)
 		pthread_mutex_unlock(&data->mutex.last_meal);
 		if (time_check >= data->time_to_die)
 		{
-			print_action(philo->philo_id, time_stamp(), PHILO_DEAD);
 			pthread_mutex_lock(&data->mutex.change_state);
+			if (data->dead == false)
+				printf("%llu ms Philo %d %s\n", (time_stamp()
+						- data->start_time), philo->philo_id, PHILO_DEAD);
 			data->dead = true;
 			pthread_mutex_unlock(&data->mutex.change_state);
 			return (1);
 		}
-		i++;
 	}
 	return (0);
 }
