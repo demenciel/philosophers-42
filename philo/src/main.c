@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:20:35 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/27 09:04:04 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:10:51 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,6 @@ int	main(int ac, char **av)
 		return (0);
 	if (init_all(av) != 0)
 		return (0);
-	if (call_struct()->nb_philo == 1)
-	{
-		print_action(1, 0, PHILO_DEAD);
-		destroy_mutex();
-		return (0);
-	}
 	launcher();
 	destroy_mutex();
 }

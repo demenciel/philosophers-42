@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 17:15:03 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/27 09:03:52 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:16:26 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,19 @@ void	*routine(void *void_philo)
 	data = call_struct();
 	philo = (t_philo *)void_philo;
 	if (philo->philo_id % 2 == 0)
-		my_sleep(data->time_to_eat);
+		usleep(15000);
 	while (1)
 	{
 		if (check_full() == 1)
 			break ;
-		if (check_death() == 1 || philo_eating(philo) == 1)
+		pthread_mutex_lock(&data->mutex.change_state);
+		if (data->dead == true)
+		{
+			pthread_mutex_unlock(&data->mutex.change_state);
 			break ;
-		my_sleep(data->time_to_sleep);
-		print_action(philo->philo_id, time_stamp(), PHILO_SLEEPING);
+		}
+		pthread_mutex_unlock(&data->mutex.change_state);
+		philo_eating(philo);
 		print_action(philo->philo_id, time_stamp(), PHILO_THINKING);
 	}
 	return (NULL);
@@ -51,7 +55,7 @@ void	wait_thread(void)
 	while (i < data->nb_philo)
 	{
 		philo = &data->philo[i];
-		if (pthread_join(philo->thread_id, NULL) == -1)
+		if (pthread_detach(philo->thread_id) == -1)
 			break ;
 		i++;
 	}
@@ -74,4 +78,5 @@ void	launcher(void)
 		i++;
 	}
 	wait_thread();
+	check_death();
 }

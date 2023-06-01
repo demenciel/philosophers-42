@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:38:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/29 14:31:01 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:16:15 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,16 @@ int	check_full(void)
 	return (0);
 }
 
+void	declare_death(t_data *data, int id)
+{
+	pthread_mutex_lock(&data->mutex.change_state);
+	if (data->dead == false)
+		printf("%llu ms Philo %d %s\n", (time_stamp() - data->start_time), id,
+			PHILO_DEAD);
+	data->dead = true;
+	pthread_mutex_unlock(&data->mutex.change_state);
+}
+
 /**
  * Checks if the time of last meal is greater than the time_to_die
 */
@@ -43,36 +53,22 @@ int	check_death(void)
 	t_philo	*philo;
 	t_data	*data;
 
-	i = -1;
 	data = call_struct();
-	while (++i < data->nb_philo)
+	while (1)
 	{
-		philo = &data->philo[i];
-		pthread_mutex_lock(&data->mutex.last_meal);
-		time_check = time_stamp() - philo->time_last_meal;
-		pthread_mutex_unlock(&data->mutex.last_meal);
-		if (time_check >= data->time_to_die || death_conditions() == 1)
+		i = -1;
+		while (++i < data->nb_philo)
 		{
-			pthread_mutex_lock(&data->mutex.change_state);
-			if (data->dead == false)
-				printf("%llu ms Philo %d %s\n", (time_stamp()
-						- data->start_time), philo->philo_id, PHILO_DEAD);
-			data->dead = true;
-			pthread_mutex_unlock(&data->mutex.change_state);
-			return (1);
+			philo = &data->philo[i];
+			pthread_mutex_lock(&data->mutex.last_meal);
+			time_check = time_stamp() - philo->time_last_meal;
+			pthread_mutex_unlock(&data->mutex.last_meal);
+			if (time_check >= data->time_to_die)
+			{
+				declare_death(data, philo->philo_id);
+				return (1);
+			}
 		}
 	}
-	return (0);
-}
-
-int death_conditions(void)
-{
-	t_data *data;
-
-	data = call_struct();
-	if ((data->nb_philo % 2 == 0) && (data->time_to_die < (data->time_to_eat * 2)))
-		return (1);
-	else if ((data->nb_philo % 2 != 0) && (data->time_to_die < (data->time_to_eat * 3)))
-		return (1);
 	return (0);
 }

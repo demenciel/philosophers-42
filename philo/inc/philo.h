@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/27 09:04:34 by acouture         ###   ########.fr       */
+/*   Updated: 2023/05/29 14:30:20 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,5 @@ int					philo_eating(t_philo *philo);
 // CHECKERS
 int					check_full(void);
 int					check_death(void);
+int					death_conditions(void);
 #endif

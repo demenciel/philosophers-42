@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 07:57:39 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/27 08:24:02 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:10:59 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int	philo_eating(t_philo *philo)
 		return (1);
 	if (pthread_mutex_unlock(&data->mutex.fork[philo->r_fork]) != 0)
 		return (1);
+	my_sleep(data->time_to_sleep);
+	print_action(philo->philo_id, time_stamp(), PHILO_SLEEPING);
 	return (0);
 }
