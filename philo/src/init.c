@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:34:52 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/27 09:05:15 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:11:42 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,17 @@ void	init_args(char **av)
 
 	data = call_struct();
 	data->nb_philo = ft_atoi(av[1]);
+	if (data->nb_philo == -1)
+		return ;
 	data->time_to_die = ft_atoi(av[2]);
+	if (data->time_to_die == -1)
+		return ;
 	data->time_to_eat = ft_atoi(av[3]);
+	if (data->time_to_eat == -1)
+		return ;
 	data->time_to_sleep = ft_atoi(av[4]);
+	if (data->time_to_sleep == -1)
+		return ;
 	if (av[5])
 	{
 		data->must_eat = ft_atoi(av[5]);

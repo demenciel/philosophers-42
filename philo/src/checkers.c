@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:38:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/06/01 16:16:15 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:14:30 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ int	check_death(void)
 	data = call_struct();
 	while (1)
 	{
+		if (check_full() == 1)
+			break ;
 		i = -1;
 		while (++i < data->nb_philo)
 		{

@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:21:21 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/29 14:30:20 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:09:56 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <limits.h>
 
 # define FORK_TAKEN "has taken a fork"
 # define PHILO_EATING "is eating"
@@ -71,7 +72,7 @@ int					print_action(int philo_id, uint64_t stamp, char *action);
 uint64_t			time_stamp(void);
 void				my_sleep(uint64_t time);
 int					check_av(char **av, int ac);
-int					ft_atoi(char *s);
+long				ft_atoi(char *s);
 
 // INIT
 int					init_all(char **av);

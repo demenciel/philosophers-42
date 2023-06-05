@@ -6,7 +6,7 @@
 /*   By: acouture <acouture@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 16:27:41 by acouture          #+#    #+#             */
-/*   Updated: 2023/05/27 08:48:13 by acouture         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:14:34 by acouture         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,15 @@
 /**
  * Converts an array to an integer
 */
-int	ft_atoi(char *s)
+long	ft_atoi(char *s)
 {
-	int	res;
+	long	res;
 
 	res = 0;
 	while (*s)
 		res = res * 10 + *s++ - '0';
+	if (res > INT_MAX)
+		return (-1);
 	return (res);
 }
 
